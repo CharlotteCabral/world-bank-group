@@ -1,0 +1,11 @@
+# models/staging/sources.yml
+
+version: 2
+
+sources:
+  - name: world_bank 
+    project: data-quest-charlotte-504508 
+    schema: world_bank_raw 
+    tables:
+      - name: raw_data  
+  

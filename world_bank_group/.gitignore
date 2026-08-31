@@ -1,0 +1,15 @@
+
+# Environnement virtuel Python (géré par uv)
+venv/
+# Fichiers générés par dbt (recréés à chaque dbt run)
+target/
+dbt_packages/
+logs/
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+*.pyo
+# Fichiers personnels et secrets
+*.json
+.env
+.DS_Store

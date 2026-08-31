@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg_world_bank
+    description: "Données économiques, démographiques, sociales, éducatives et environnementales issues de la Banque mondiale."
+
+    columns:
+      - name: country_name
+        description: "Nom du pays."
+
+      - name: countryiso3code
+        description: "Code ISO 3 du pays."
+        data_tests:
+          - not_null
+
+      - name: annee
+        description: "Année de l'observation."
+        data_tests:
+          - not_null
+
+      - name: pib
+        description: "Produit intérieur brut en dollars US."
+
+      - name: pib_par_habitant
+        description: "PIB par habitant en dollars US."
+
+      - name: croissance_pib
+        description: "Taux de croissance annuel du PIB en pourcentage."
+
+      - name: population
+        description: "Population totale."
+
+      - name: esperance_vie
+        description: "Espérance de vie à la naissance."
+
+      - name: chomage
+        description: "Taux de chômage."
+
+      - name: inflation
+        description: "Taux d'inflation."
+
+      - name: acces_electricite
+        description: "Part de la population ayant accès à l'électricité."
+
+      - name: taux_natalite
+        description: "Taux de natalité."
+
+      - name: scolarisation_secondaire
+        description: "Taux de scolarisation dans l'enseignement secondaire."
+
+      - name: scolarisation_superieur
+        description: "Taux de scolarisation dans l'enseignement supérieur."
+
+      - name: achevement_primaire
+        description: "Taux d'achèvement de l'enseignement primaire."
+
+      - name: depense_de_sante
+        description: "Dépenses courantes de santé en pourcentage du PIB."
+
+      - name: depense_publique_education
+        description: "Dépenses publiques d'éducation en pourcentage du PIB."
+
+      - name: alphabetisation_adultes
+        description: "Taux d'alphabétisation des adultes."
+
+      - name: row_hash
+        description: "Empreinte permettant d'identifier une ligne et de gérer la déduplication."
+
+      - name: inserted_at
+        description: "Date et heure d'insertion de la ligne dans la table raw."
