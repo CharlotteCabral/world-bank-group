@@ -8,7 +8,7 @@ models:
       - name: country_name
         description: "Nom du pays."
 
-      - name: countryiso3code
+      - name: country_code
         description: "Code ISO 3 du pays."
         data_tests:
           - not_null
