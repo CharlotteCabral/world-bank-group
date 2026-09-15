@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+      - name: Installer uv
+        uses: astral-sh/setup-uv@v5    
       - run: pip install -r requirements.txt
       - run: echo '${{ secrets.GCP_SA_KEY }}' >"$GITHUB_WORKSPACE/cle_bigquery.json"
       - name: Configurer le profil dbt 
