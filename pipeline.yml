@@ -19,7 +19,7 @@ jobs:
         run: |
           mkdir -p ~/.dbt
           cat > ~/.dbt/profiles.yml <<EOF
-          dbt_ga:
+          'world_bank_group':
             target: dev
             outputs:
               dev:
