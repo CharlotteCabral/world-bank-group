@@ -1,4 +1,3 @@
-
 name: Pipeline (ingestion + dbt)
 
 on:
@@ -17,8 +16,8 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: echo '${{ secrets.GCP_SA_KEY }}' >"$GITHUB_WORKSPACE/cle_bigquery.json"
-      - name: Configurer le profil dbt 
+      - run: echo '${{ secrets.GCP_SA_KEY }}' > "$GITHUB_WORKSPACE/cle_bigquery.json"
+      - name: Configurer le profil dbt
         run: |
           mkdir -p ~/.dbt
           cat > ~/.dbt/profiles.yml <<EOF
@@ -35,6 +34,5 @@ jobs:
           EOF
       - name: Lancer le pipeline
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace
-}}/cle_bigquery.json
-        run: python run_pipeline.pyname: Pipeline (ingestion + dbt)
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/cle_bigquery.json
+        run: python run_pipeline.py
