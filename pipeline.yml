@@ -36,3 +36,7 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace}}/cle_bigquery.json
         run: python run_pipeline.py
+        
+      - name: Lancer la transformation dbt
+        working-directory: ./world_bank_group
+        run: uv run dbt run

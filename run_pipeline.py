@@ -22,11 +22,4 @@ if __name__ == "__main__":
     print("=== 1. Ingestion World Bank → BigQuery ===")
     avec_retry(ingest_data, essais=3, delai=5)
 
-    print("\n=== 2. Transformation dbt ===")
-    subprocess.run(
-        ["uv", "run", "dbt", "run"],
-        cwd="world_bank_group",  # Assure-toi que ce nom de dossier est exact
-        check=True,
-    )
-
     print("\n✅ Pipeline terminé : données ingérées et transformées.")
