@@ -35,4 +35,4 @@ jobs:
       - name: Lancer le pipeline
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace}}/cle_bigquery.json
-        run: python run_pipeline.pyname: Pipeline (ingestion + dbt)
+        run: python run_pipeline.py
