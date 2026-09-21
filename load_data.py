@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 from google.api_core.exceptions import NotFound
 from google.cloud import bigquery
 import requests
+from pydantic import ValidationError
+from src.schemas import IndicateurLigne
 
 # ------------------------------------------------------------------------------
 # CONFIGURATION DU LOGGING
@@ -140,7 +142,16 @@ def extraire_donnees_indicateur(code_indicateur: str) -> List[Dict[str, Any]]:
             enregistrements_bruts = donnees[1]
 
             if enregistrements_bruts:
-                enregistrements.extend(enregistrements_bruts)
+                # --- FILTRAGE PYDANTIC ---
+                lignes_valides = []
+                for ligne in enregistrements_bruts:
+                    try:
+                        ligne_validee = IndicateurLigne.model_validate(ligne)
+                        lignes_valides.append(ligne_validee.model_dump())
+                    except ValidationError as e:
+                        logger.warning(f"⚠️ Ligne ignorée ({code_indicateur}), {e.error_count()} champ(s) invalide(s).")
+                
+                enregistrements.extend(lignes_valides)
 
             page += 1
             time.sleep(API_RATE_LIMIT_DELAY)
