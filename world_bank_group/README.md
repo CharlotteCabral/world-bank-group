@@ -1,15 +1,27 @@
-Welcome to your new dbt project!
+# World Bank Socio-Economic Clustering
 
-### Using the starter project
+Pipeline ELT, transformation dbt et Machine Learning pour analyser et cartographier les profils socio-économiques mondiaux.
 
-Try running the following commands:
-- dbt run
-- dbt test
+## Prérequis
+- Python 3.11[cite: 7]
+- Une clé de service pour accéder à BigQuery
+- Power BI Desktop
 
+## Installation
+pip install -r requirements.txt  
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## Utilisation
+python run_pipeline.py  # lance l'ingestion, dbt, le ML et les prédictions
+
+## Structure du projet
+- load_data.py : ingestion incrémentale des données depuis l'API de la Banque Mondiale
+- models/ : transformations et modélisation des données avec dbt (staging et marts)
+- predict.py : application du modèle de clustering K-Means et écriture dans BigQuery
+- dashboard/ : le tableau de bord Power BI
+
+## Sources de données
+API publique de la Banque Mondiale (indicateurs macro-économiques, démographiques et environnementaux).
+
+## Contact
+charlottecabral@yahoo.fr
+

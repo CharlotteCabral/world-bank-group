@@ -1,10 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class IndicateurLigne(BaseModel):
-    country_code: str
-    country_name: str
-    indicator_code: str
-    indicator_label_fr: Optional[str] = None
-    year_number: int
-    valeur: Optional[float] = None
+    country_code: str = Field(alias="countryiso3code")
+    country_name: Optional[dict] = None 
+    indicator_code: Optional[dict] = None 
+    year_number: int = Field(alias="date")
+    valeur: Optional[float] = Field(None, alias="value")
