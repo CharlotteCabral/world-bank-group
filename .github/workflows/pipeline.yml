@@ -29,7 +29,7 @@ jobs:
           $dbtDir = "$HOME\.dbt"
           if (!(Test-Path $dbtDir)) { New-Item -ItemType Directory -Force -Path $dbtDir }
           @"
-          dbt_ga:
+          world_bank_group:
             target: dev
             outputs:
               dev:
