@@ -3,7 +3,8 @@ from datetime import datetime, timezone
 from google.cloud import bigquery
 from sklearn.metrics import silhouette_score
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\\dev\\cle_bigquery.json"
+if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ and os.path.exists("C:\\dev\\cle_bigquery.json"):
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\\dev\\cle_bigquery.json"
 
 PROJECT = "data-quest-charlotte-504508"  
 MARTS = "world_bank_marts"

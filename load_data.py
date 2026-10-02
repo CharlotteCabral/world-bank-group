@@ -11,6 +11,10 @@ from google.cloud import bigquery
 import requests
 from pydantic import ValidationError
 from src.schemas import IndicateurLigne
+import os
+
+if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ and os.path.exists("C:\\dev\\cle_bigquery.json"):
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\\dev\\cle_bigquery.json"
 
 # ------------------------------------------------------------------------------
 # CONFIGURATION DU LOGGING
