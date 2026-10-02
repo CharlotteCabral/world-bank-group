@@ -9,18 +9,26 @@ on:
 
 jobs:
   pipeline:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: echo '${{ secrets.GCP_SA_KEY }}' > "$GITHUB_WORKSPACE/cle_bigquery.json"
-      - name: Configurer le profil dbt
+      
+      - name: Créer le dossier et la clé BigQuery
+        shell: pwsh
         run: |
-          mkdir -p ~/.dbt
-          cat > ~/.dbt/profiles.yml <<EOF
+          New-Item -ItemType Directory -Force -Path "C:\dev"
+          Set-Content -Path "C:\dev\cle_bigquery.json" -Value '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Configurer le profil dbt
+        shell: pwsh
+        run: |
+          $dbtDir = "$HOME\.dbt"
+          if (!(Test-Path $dbtDir)) { New-Item -ItemType Directory -Force -Path $dbtDir }
+          @"
           dbt_ga:
             target: dev
             outputs:
@@ -29,10 +37,10 @@ jobs:
                 method: service-account
                 project: data-quest-tiphaine
                 dataset: ga_test
-                keyfile: $GITHUB_WORKSPACE/cle_bigquery.json
+                keyfile: C:\dev\cle_bigquery.json
                 location: US
-          EOF
+          "@ | Out-File -Encoding utf8 "$dbtDir\profiles.yml"
+
       - name: Lancer le pipeline
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/cle_bigquery.json
+        shell: pwsh
         run: python run_pipeline.py
