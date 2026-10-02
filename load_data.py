@@ -12,9 +12,13 @@ import requests
 from pydantic import ValidationError
 from src.schemas import IndicateurLigne
 import os
+from google.oauth2 import service_account
 
-if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ and os.path.exists("C:\\dev\\cle_bigquery.json"):
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\\dev\\cle_bigquery.json"
+credentials_path = os.environ.get(
+    "GOOGLE_APPLICATION_CREDENTIALS", 
+    r"C:\dev\cle_bigquery.json"
+)
+credentials = service_account.Credentials.from_service_account_file(credentials_path)
 
 # ------------------------------------------------------------------------------
 # CONFIGURATION DU LOGGING
