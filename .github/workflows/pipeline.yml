@@ -41,6 +41,11 @@ jobs:
                 location: US
           "@ | Out-File -Encoding utf8 "$dbtDir\profiles.yml"
 
+      - name: Installer les dépendances dbt
+        shell: pwsh
+        working-directory: world_bank_group
+        run: dbt deps
+
       - name: Lancer le pipeline
         shell: pwsh
         run: python run_pipeline.py
