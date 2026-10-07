@@ -223,7 +223,7 @@ def annuler_le_lot(client: bigquery.Client, chemin_table: str, batch_id: str) ->
 def ingest_data() -> None:
     """Orchestre le pipeline ELT avec filtrage anti-doublons et rollback[cite: 2, 3]."""
     load_dotenv()
-    client = bigquery.Client()
+    client = bigquery.Client(credentials=credentials, project=credentials.project_id)
     chemin_table = f"{client.project}.{DATASET_ID}.{TABLE_NAME}"
     
     maintenant_iso = datetime.datetime.now(datetime.timezone.utc).isoformat()

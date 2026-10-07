@@ -35,7 +35,7 @@ jobs:
               dev:
                 type: bigquery
                 method: service-account
-                project: data-quest-tiphaine
+                project: data-quest-charlotte-504508
                 dataset: ga_test
                 keyfile: C:\dev\cle_bigquery.json
                 location: US
