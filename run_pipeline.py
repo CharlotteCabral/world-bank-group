@@ -31,4 +31,4 @@ if __name__ == "__main__":
     print("\n=== 4. Prédiction ML ===")
     predire()
     
-    print("\n✅ Pipeline terminé : données ingérées, transformées, modélisées et prédites.")
+    print("\n[OK] Pipeline termine : donnees ingerees, transformees, modelees et predites.")
